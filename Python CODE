@@ -1,0 +1,39 @@
+alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+encode_or_decode = input("Digite encode para criptografar e decode para descriptografar\n").lower()
+mensagem = input(f"Qual a sua mensagem para {encode_or_decode}?").lower()
+steps = int(input("Quantos passos voce quer dar na criptografia?"))
+jogador = ""
+def caesar(mensagem_original,passos,encode_or_decode):
+   if encode_or_decode == ("encode"):
+      texto_criptografado = ''
+      for letras in mensagem_original:
+         if letras not in alphabet:
+             texto_criptografado += letras
+         else:
+            codificado = alphabet.index(letras) + passos
+            codificado %=len(alphabet)
+            texto_criptografado += alphabet[codificado]
+      print(f"Ta aqui a sua {encode_or_decode} message = {texto_criptografado}")    
+   elif encode_or_decode == ("decode"):
+      texto_descriptografado = ''
+      for letras in mensagem_original: 
+         if letras not in alphabet:
+             texto_descriptografado += letras
+         else:
+            codificado = alphabet.index(letras) - passos
+            codificado %=len(alphabet)
+            texto_descriptografado += alphabet[codificado]
+      print(f"Ta aqui a sua {encode_or_decode} message = {texto_descriptografado}")    
+
+continuar = True
+while continuar:        
+   caesar(mensagem_original=mensagem,passos=steps, encode_or_decode=encode_or_decode)
+   restart = input("yes-continuar, no-parar").lower()
+   if restart == 'no':
+       continuar = False
+       print("Volte Sempre")
+   elif restart =='yes':
+      encode_or_decode = input("Digite encode para criptografar e decode para descriptografar\n").lower()
+      mensagem = input("Qual a sua mensagem para codificar?").lower()
+      steps = int(input("Quantos passos voce quer dar na criptografia?"))
+   
